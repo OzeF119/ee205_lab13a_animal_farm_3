@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-#include "src/Weight.h"
+#include "Weight.h"
 
 using namespace std;
 
