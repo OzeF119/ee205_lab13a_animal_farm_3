@@ -14,4 +14,7 @@ add_executable(ee205_lab13a_animal_farm_3
         config.h
         SinglyLinkedList.cpp
         SinglyLinkedList.h
+        Animal.h
+        Animal.cpp
+        Gender.h
         )
