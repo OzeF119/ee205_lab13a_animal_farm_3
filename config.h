@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
+#include <iomanip>
 #define PROGRAM_NAME = "animalfarm3"
 #define PROGRAM_TITLE "Animal Farm 3"
 
