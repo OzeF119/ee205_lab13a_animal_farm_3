@@ -20,14 +20,10 @@
 #include "Animal.h"
 
 using namespace std;
-
-
 const std::string Animal::KINGDOM_NAME = "Animalia";
 
 
-Animal::Animal( const Weight::t_weight newMaxWeight
-        ,const std::string& newClassification
-        ,const std::string& newSpecies ) : Node(), weight( Weight::POUND, newMaxWeight ) {
+Animal::Animal( const Weight::t_weight newMaxWeight,const std::string& newClassification ,const std::string& newSpecies ) : Node(), weight( Weight::POUND, newMaxWeight ) {
     if( !validateClassification( newClassification ) ) {
         throw invalid_argument( "The classification is invalid" );
     }
@@ -90,7 +86,6 @@ Weight::t_weight Animal::getWeight() const noexcept {
 
 
 void Animal::setWeight( const Weight::t_weight newWeight ) {
-    validate();
     weight.setWeight( newWeight );
     validate();
 }
@@ -100,57 +95,44 @@ void Animal::setGender( const Gender newGender ) {
     if( gender != Gender::UNKNOWN_GENDER ) {
         throw logic_error( PROGRAM_NAME ": The gender is already set, you can't change it" ) ;
     }
-
-    // At this point, gender is unknown...
     assert( gender == Gender::UNKNOWN_GENDER );
-
-    validate();
     gender = newGender ;
     validate();
 }
 
 
+void Animal::dump() const noexcept {
+    PRINT_HEADING_FOR_DUMP;
+    Node::dump();
+
+    FORMAT_LINE_FOR_DUMP( "Animal", "this" ) << this << endl;
+    FORMAT_LINE_FOR_DUMP( "Animal", "kingdom" ) << getKingdom() << endl;
+    FORMAT_LINE_FOR_DUMP( "Animal", "classification" ) << getClassification() << endl;
+    FORMAT_LINE_FOR_DUMP( "Animal", "species" ) << getSpecies() << endl;
+    FORMAT_LINE_FOR_DUMP( "Animal", "gender" ) << getGender() << endl;
+    FORMAT_LINE_FOR_DUMP( "Animal", "weight" ) << weight << endl;
+}
+
+
 bool Animal::validateClassification( const std::string& checkClassification ) noexcept {
     if( checkClassification.empty() ) {
-        cout << PROGRAM_NAME ": classification must not be empty" << endl ;
+        cout << PROGRAM_NAME ": classification cannot be empty" << endl ;
         return false;
     }
-
     return true;
 }
 
 bool Animal::validateSpecies( const std::string& checkSpecies ) noexcept {
     if( checkSpecies.empty() ) {
-        cout << PROGRAM_NAME ": species must not be empty" << endl ;
+        cout << PROGRAM_NAME ": species cannot be empty" << endl ;
         return false;
     }
-
     return true;
 }
 
-
-void Animal::dump() const noexcept {
-    assert( validate() ) ;
-
-    PRINT_HEADING_FOR_DUMP ;
-
-    Node::dump();
-
-    FORMAT_LINE_FOR_DUMP( "Animal", "this" ) << this << endl ;
-    FORMAT_LINE_FOR_DUMP( "Animal", "kingdom" ) << getKingdom() << endl ;
-    FORMAT_LINE_FOR_DUMP( "Animal", "classification" ) << getClassification() << endl ;
-    FORMAT_LINE_FOR_DUMP( "Animal", "species" ) << getSpecies() << endl ;
-    FORMAT_LINE_FOR_DUMP( "Animal", "gender" ) << getGender() << endl ;
-    FORMAT_LINE_FOR_DUMP( "Animal", "weight" ) << weight << endl ;
-}
-
-
 bool Animal::validate() const noexcept {
-    assert( Node::validate() );
-
-    assert( !getKingdom().empty() );
-    assert( validateClassification(getClassification()) );
-    assert( validateSpecies( getSpecies() ));
-    assert( weight.validate() );
+    assert( validateSpecies( getSpecies()));
+    assert( validateClassification(getClassification()));
+    assert( weight.validate());
     return true;
 }

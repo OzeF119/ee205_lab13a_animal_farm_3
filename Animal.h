@@ -23,12 +23,12 @@ public:
     static const std::string KINGDOM_NAME;
 private:
     std::string species;
-    std::string classification:
-    Gender gender = Gender::UNKNOWN_GENDER;
+    std::string classification;
     Weight weight;
+    Gender gender = Gender::UNKNOWN_GENDER;
 public:
     Animal(const Weight::t_weight newMaxWeight, const std::string& newClassification,
-           const std::string& new Species);
+           const std::string& newSpecies);
     Animal(const Gender newGender, const Weight::t_weight newWeight,
            const Weight::t_weight newMaxWeight, const std::string& newClassification,
            const std::string& newSpecies);

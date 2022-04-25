@@ -17,4 +17,7 @@ add_executable(ee205_lab13a_animal_farm_3
         Animal.h
         Animal.cpp
         Gender.h
+        Mammal.h
+        Mammal.cpp
+        Color.h
         )
