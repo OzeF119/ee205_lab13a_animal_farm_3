@@ -25,3 +25,12 @@ bool Node::operator>(const Node &toTheRight) {
     return false;
 }
 
+bool Node::validate() const noexcept {
+    if(next == nullptr){
+        return true;
+    }
+    if(next == next->next) {
+        return false;
+    }
+    return true;
+}

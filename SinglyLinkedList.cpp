@@ -11,7 +11,6 @@
 
 #include "SinglyLinkedList.h"
 #include "config.h"
-#include "List.h"
 
 #include <iostream>
 #include <cassert>
@@ -21,28 +20,70 @@ using namespace std;
 
 bool SinglyLinkedList::validate() const noexcept {
     int location = 0;
-    Node* location = head;
-    // Count forward through the List
-    while( location != nullptr ) {
-        assert( location->validate() ) ;
+    Node* currentNode = head;
+    while( currentNode != nullptr ) {
+        assert( currentNode->validate() ) ;
         location++;
-        location = location->next;
+        currentNode = currentNode->next;
     }
-    assert( size() == location );
-
+    return true;
 }
 
-SinglyLinkedList::SinglyLinkedList() {
-}
 void SinglyLinkedList::push_front(Node *newNode) {
+    if(newNode == nullptr) {
+        throw invalid_argument(PROGRAM_NAME " newNode cannot be empty");
+    }
+    assert(validate());
+    if(head != nullptr) {
+        newNode->next = head;
+        head = newNode;
+    }
+    else {
+        newNode->next = nullptr;
+        head - newNode;
+    }
+    count++;
+    assert(validate());
 }
 
 Node *SinglyLinkedList::pop_front() noexcept {
+    if(head == nullptr){
+        return nullptr;
+    }
+    Node* search = head;
+    if(head->next != nullptr) {
+        head = head->next;
+    }
+    else {
+        head = nullptr;
+    }
+    search->next = nullptr;
+    count--;
+    assert(validate());
+    return search;
 }
 
 void SinglyLinkedList::insert_after(Node *currentNode, Node *newNode) {
+    if(head == nullptr) {
+        throw logic_error(PROGRAM_NAME ": cannot enter into an empty list");
+    }
+    if(currentNode == nullptr) {
+        throw invalid_argument(PROGRAM_NAME ": currentNode cannot be empty");
+    }
+    if(newNode == nullptr) {
+        throw invalid_argument(PROGRAM_NAME ": newNode cannot be empty");
+    }
+
+    newNode->next = currentNode->next;
+    currentNode->next = newNode;
+    count++;
+    assert(validate());
 }
 
 void SinglyLinkedList::dump() const noexcept {
+    cout << "SinglyLinkedList: head = " << head << endl;
+    for(Node* currentNode = head; currentNode != nullptr; currentNode = currentNode->next){
+        currentNode->dump();
+    }
 }
 

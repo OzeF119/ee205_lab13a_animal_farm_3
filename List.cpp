@@ -12,6 +12,8 @@
 #include "List.h"
 #include "config.h"
 
+#include <cassert>
+
 bool List::empty() const noexcept {
     return (head == nullptr);
 }

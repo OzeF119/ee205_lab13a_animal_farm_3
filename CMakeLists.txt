@@ -12,4 +12,6 @@ add_executable(ee205_lab13a_animal_farm_3
         Node.cpp
         Node.h
         config.h
+        SinglyLinkedList.cpp
+        SinglyLinkedList.h
         )

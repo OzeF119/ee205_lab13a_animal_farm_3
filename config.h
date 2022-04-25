@@ -11,7 +11,7 @@
 #pragma once
 
 #include <iomanip>
-#define PROGRAM_NAME = "animalfarm3"
+#define PROGRAM_NAME "animalfarm3"
 #define PROGRAM_TITLE "Animal Farm 3"
 
 /// Format the heading for dumping members of a class to the console

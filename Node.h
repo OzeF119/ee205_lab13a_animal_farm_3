@@ -21,6 +21,7 @@ protected:
 public:
     virtual void dump() const;
     virtual bool operator>(const Node& rightSide);
+    virtual bool validate() const noexcept;
 };
 
 
