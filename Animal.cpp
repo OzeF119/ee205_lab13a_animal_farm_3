@@ -93,7 +93,7 @@ void Animal::setWeight( const Weight::t_weight newWeight ) {
 
 void Animal::setGender( const Gender newGender ) {
     if( gender != Gender::UNKNOWN_GENDER ) {
-        throw logic_error( PROGRAM_NAME ": The gender is already set, you can't change it" ) ;
+        throw logic_error( PROGRAM_NAME ": Cannot change a set gender" ) ;
     }
     assert( gender == Gender::UNKNOWN_GENDER );
     gender = newGender ;

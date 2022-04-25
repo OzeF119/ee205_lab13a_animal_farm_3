@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(ee205_lab13a_animal_farm_3
-        main.cpp
         Weight.cpp
         Weight.h
         Node.cpp
@@ -19,5 +18,10 @@ add_executable(ee205_lab13a_animal_farm_3
         Gender.h
         Mammal.h
         Mammal.cpp
+        List.h
+        List.cpp
         Color.h
+        Cat.h
+        Cat.cpp
+        main.cpp
         )

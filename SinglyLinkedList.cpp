@@ -19,11 +19,9 @@ using namespace std;
 
 
 bool SinglyLinkedList::validate() const noexcept {
-    int location = 0;
     Node* currentNode = head;
     while( currentNode != nullptr ) {
         assert( currentNode->validate() ) ;
-        location++;
         currentNode = currentNode->next;
     }
     return true;
@@ -40,9 +38,8 @@ void SinglyLinkedList::push_front(Node *newNode) {
     }
     else {
         newNode->next = nullptr;
-        head - newNode;
+        head = newNode;
     }
-    count++;
     assert(validate());
 }
 
@@ -58,7 +55,6 @@ Node *SinglyLinkedList::pop_front() noexcept {
         head = nullptr;
     }
     search->next = nullptr;
-    count--;
     assert(validate());
     return search;
 }
@@ -76,7 +72,6 @@ void SinglyLinkedList::insert_after(Node *currentNode, Node *newNode) {
 
     newNode->next = currentNode->next;
     currentNode->next = newNode;
-    count++;
     assert(validate());
 }
 
